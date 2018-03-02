@@ -155,13 +155,12 @@ if (!$conn)
                 <div class="row">
 		<table>
                   <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$sql = "SELECT * FROM developer ORDER BY name DESC";
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>
 			<?php
-						echo "<th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th>" .  							"<br>";
+						echo "<th>" . "Name" .  "</th>" . "<th>" . "Royalties" .  "</th>" . "<br>";
 			?>
 			</tr>
 			</div>
@@ -175,8 +174,7 @@ if (!$conn)
 						<div class="row">
 					<?php
 
-			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD><br>";
+			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["royalties"] . "</TD><br>";
 					?>
 
 					</tr>

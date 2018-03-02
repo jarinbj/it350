@@ -155,13 +155,12 @@ if (!$conn)
                 <div class="row">
 		<table>
                   <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$sql = "SELECT * FROM customer ORDER BY userID ASC";
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>
 			<?php
-						echo "<th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th>" .  							"<br>";
+						echo "<th>" . "userID" .  "</th>" . "<th> " . "Street Address</th>" . "<th> " . "House Number</th>" . "<th> " . "City</th>" . "<th> " . "State</th>" . "<th>" . "Zipcode</th>" . "<th>" . "User Name</th>"  .  							"<br>";
 			?>
 			</tr>
 			</div>
@@ -175,8 +174,8 @@ if (!$conn)
 						<div class="row">
 					<?php
 
-			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD><br>";
+			echo "<TD>" . $row["userID"] . "</TD> <TD>" . $row["streetnumber"] . "</TD> <TD>" . $row["housenumber"] . "</TD><TD>" . 
+	$row["city"] . "</TD> <TD>" . $row["usstate"] . "</TD> <TD>" . $row["zipcode"] . "</TD><TD>" . $row["username"] .  "</TD><br>";
 					?>
 
 					</tr>

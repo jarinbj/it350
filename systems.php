@@ -155,13 +155,12 @@ if (!$conn)
                 <div class="row">
 		<table>
                   <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$sql = "SELECT * FROM gamesystem ORDER BY systemID ASC";
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>
 			<?php
-						echo "<th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th>" .  							"<br>";
+						echo "<th>" . "ID" .  "</th>" . "<th>" . "name" . "<th>" . "Release date" .  "</th>" . "<th>" . "Developer" .  "</th>" .  "</th>" . "<br>";
 			?>
 			</tr>
 			</div>
@@ -175,8 +174,7 @@ if (!$conn)
 						<div class="row">
 					<?php
 
-			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD><br>";
+			echo "<TD>" . $row["systemID"] . "</TD><TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "<TD>" . $row["developer"] . "</TD><br>";
 					?>
 
 					</tr>
