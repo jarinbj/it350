@@ -1,4 +1,40 @@
 <!doctype html>
+<?php 
+session_start();
+if (isset($_SESSION['user_id']))
+{
+$servername = "localhost";
+$username = "root";
+$password = "itsatrap";
+$dbname = "coolroms";
+$conn = mysqli_connect($servername,$username,$password,$dbname);
+if (!$conn) 
+{
+	echo "failed";
+	die("Connection Failed: " . mysqli_connect_error());
+}
+$sql = "SELECT * FROM account WHERE username = '" . $_SESSION['user_id'] . "'";
+$results = mysqli_query($conn,$sql);
+if (mysqli_num_rows($results) > 0)
+{
+ while ($row = mysqli_fetch_assoc($results))
+{
+if ($row["admin"] == 1)
+{
+ 
+}
+else
+{
+header( 'Location: login.php' ) ;
+}
+}
+}
+}
+else
+{
+header( 'Location: login.php' ) ;
+}
+?>
 <html lang="en">
 <style>
 * {
@@ -8,9 +44,9 @@
 /* Create three equal columns that floats next to each other */
 .column {
     float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    width: 100%;
+    padding: 50px;
+ 
 }
 
 /* Clear floats after the columns */
@@ -20,7 +56,8 @@
     clear: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    margin: auto;
 }
 </style>
 </style>
@@ -35,16 +72,7 @@ table, th, td {
 </head>
 <body class="sidebar-fixed header-fixed">
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "itsatrap";
-$dbname = "coolroms";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-if (!$conn) 
-{
-	echo "failed";
-	die("Connection Failed: " . mysqli_connect_error());
-}
+
 ?>
 <div class="page-wrapper">
     <nav class="navbar page-header">
@@ -103,7 +131,7 @@ if (!$conn)
                         <i class="fa fa-wrench"></i> Settings
                     </a>
 					
-                    <a href="#" class="dropdown-item">
+                    <a href="logout.php" class="dropdown-item">
                         <i class="fa fa-lock"></i> Logout
 						<?php } ?>
                     </a>
@@ -151,8 +179,32 @@ if (!$conn)
         </div>
 
         <div class="content">
+<h1>Add a Rom</h1>
+<form action="addtoroms.php" method="post">
+  Name:
+  <input type="text" name="name">
+  Release date:
+  <input type="text" name="release"><br>
+Description:
+  <input type="text" name="description">
+price:
+  <input type="text" name="price"><br>
+Times Sold:
+  <input type="text" name="timessold">
+System ID:
+  <input type="text" name="systemID"><br>
+Developer:
+  <input type="text" name="developer"> <br>
+<input type ="submit" text = "Submit">
+</form>
+<form action="removefromroms.php" method="post">
+  Name:
+  <input type="text" name="name">
+<input type ="submit" text = "Submit">
+</form>
             <div class="container-fluid">
                 <div class="row">
+	
 		<table>
                   <?php 
 			$sql = "SELECT * FROM rom ORDER BY name ASC";
@@ -160,8 +212,8 @@ if (!$conn)
 			?>
 				<tr>
 			<?php
-						echo "<th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th>" .  							"<br>";
+						echo "<div><th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
+						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th></div>"   							;
 			?>
 			</tr>
 			</div>
@@ -176,7 +228,7 @@ if (!$conn)
 					<?php
 
 			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD><br>";
+	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD>";
 					?>
 
 					</tr>

@@ -1,4 +1,40 @@
 <!doctype html>
+<?php 
+session_start();
+if (isset($_SESSION['user_id']))
+{
+$servername = "localhost";
+$username = "root";
+$password = "itsatrap";
+$dbname = "coolroms";
+$conn = mysqli_connect($servername,$username,$password,$dbname);
+if (!$conn) 
+{
+	echo "failed";
+	die("Connection Failed: " . mysqli_connect_error());
+}
+$sql = "SELECT * FROM account WHERE username = '" . $_SESSION['user_id'] . "'";
+$results = mysqli_query($conn,$sql);
+if (mysqli_num_rows($results) > 0)
+{
+ while ($row = mysqli_fetch_assoc($results))
+{
+if ($row["admin"] == 1)
+{
+ 
+}
+else
+{
+header( 'Location: login.php' ) ;
+}
+}
+}
+}
+else
+{
+header( 'Location: login.php' ) ;
+}
+?>
 <html lang="en">
 <style>
 * {
@@ -35,16 +71,7 @@ table, th, td {
 </head>
 <body class="sidebar-fixed header-fixed">
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "itsatrap";
-$dbname = "coolroms";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-if (!$conn) 
-{
-	echo "failed";
-	die("Connection Failed: " . mysqli_connect_error());
-}
+
 ?>
 <div class="page-wrapper">
     <nav class="navbar page-header">
@@ -103,7 +130,7 @@ if (!$conn)
                         <i class="fa fa-wrench"></i> Settings
                     </a>
 					
-                    <a href="#" class="dropdown-item">
+                    <a href="logout.php" class="dropdown-item">
                         <i class="fa fa-lock"></i> Logout
 						<?php } ?>
                     </a>

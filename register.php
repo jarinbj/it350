@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Carbon - Admin Template</title>
     <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -16,28 +16,18 @@
             <div class="col-md-5">
                 <div class="card p-4">
                     <div class="card-header text-center text-uppercase h4 font-weight-light">
-                        Login
+                        Register
                     </div>
 
-                    <div class="card-body py-5">
-                        <form action="logincon.php" method="post">
-						Username: <input type="text" name="user"><br>
-						Password: <input type="password" name="password"><br>
-						<input type="submit" value="Login">
+  <form action="accountcreate.php" method="post">
+  Username: <input type="text" name="user" required><br>
+  Password: <input type="password" name="password" required><br>
+  Email: <input type="email" name="email" required><br>
+  <input type="submit" value="Submit">
 </form>
                     </div>
 
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-6">
-                              
-                            </div>
-
-                            <div class="col-6">
-                                <a href="register.php" class="btn btn-link">Register</a>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
