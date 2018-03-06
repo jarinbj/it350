@@ -3,7 +3,6 @@ session_start();
 $n = $_POST["user"];
 //echo $n;
 $r =  $_POST["password"];
-$hashed_password = sha1($r);
 //echo $hashed_password;
 $servername = "localhost";
 $username = "root";
@@ -18,14 +17,17 @@ if (!$conn)
 else
 {
 //echo "connected";
-$sql = "SELECT * FROM account WHERE username = '" . $n . "' AND password = '" . $hashed_password . "'";
+$sql = "SELECT * FROM account WHERE username = '" . $n . "'";
 $results = mysqli_query($conn,$sql);
 if (mysqli_num_rows($results) == 1) 
+{
+echo $row = mysqli_fetch_assoc($results);
+if (password_verify($r,$row['password']))
 {
 echo "yes";
 $_SESSION['user_id'] = $n;
 }
-echo $_SESSION['user_id'];
+}
 header( 'Location: index.php' ) ;
 }
 ?>
