@@ -1,18 +1,18 @@
 <?php
 $n =  $_POST["name"];
-echo $n;
+$n = filter_var($n,FILTER_SANITIZE_STRING);
 $r =  $_POST["release"];
-echo $r;
+$r = filter_var($r,FILTER_SANITIZE_STRING);
 $d =  $_POST["description"];
-echo $d;
+$d = filter_var($d,FILTER_SANITIZE_STRING);
 $p =  $_POST["price"];
-echo $p;
+
 $t =  $_POST["timessold"];
-echo $t;
+
 $s =  $_POST["systemID"];
-echo $s;
+
 $dev = $_POST["developer"];
-echo $dev;
+$dev = filter_var($dev,FILTER_SANITIZE_STRING);
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";

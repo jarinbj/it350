@@ -1,6 +1,6 @@
 <?php
 $n =  $_POST["name"];
-echo $n;
+$n = filter_var($n,FILTER_SANITIZE_STRING);
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";

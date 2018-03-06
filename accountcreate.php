@@ -1,8 +1,11 @@
 <?php
 $n = $_POST["user"];
+$n = filter_var($n,FILTER_SANITIZE_STRING);
 $r =  $_POST["password"];
+$r = filter_var($r,FILTER_SANITIZE_STRING);
 $hashed_password = password_hash($r,PASSWORD_DEFAULT);
 $d =  $_POST["email"];
+$d = filter_var($d,FILTER_SANITIZE_STRING);
 $d = filter_var($d,FILTER_SANITIZE_EMAIL);
 $servername = "localhost";
 $username = "root";

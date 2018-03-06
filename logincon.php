@@ -1,8 +1,10 @@
 <?php
 session_start();
 $n = $_POST["user"];
+$n = filter_var($n,FILTER_SANITIZE_STRING);
 //echo $n;
 $r =  $_POST["password"];
+$r = filter_var($r,FILTER_SANITIZE_STRING);
 //echo $hashed_password;
 $servername = "localhost";
 $username = "root";
