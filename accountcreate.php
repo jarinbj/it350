@@ -7,6 +7,12 @@ $hashed_password = password_hash($r,PASSWORD_DEFAULT);
 $d =  $_POST["email"];
 $d = filter_var($d,FILTER_SANITIZE_STRING);
 $email = filter_var($d,FILTER_SANITIZE_EMAIL);
+if ($n == "" || $r == "" || $d == "")
+{
+
+}
+else
+{ 
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";
@@ -38,6 +44,7 @@ $stmt->bind_param("sss", $n,$hashed_password,$d);
 $stmt->execute();
 $results = $stmt->get_result();
 echo "connected";
+}
 }
 }
 }
