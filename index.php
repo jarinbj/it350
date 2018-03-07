@@ -196,6 +196,7 @@ System ID:
 Developer:
   <input type="text" name="developer"> <br>
 <input type ="submit" text = "Submit">
+<H1>Remove Rom by name</H1>
 </form>
 <form action="removefromroms.php" method="post">
   Name:
