@@ -56,7 +56,8 @@ header( 'Location: login.php' ) ;
     clear: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    margin: auto;
 }
 </style>
 </style>
@@ -178,6 +179,21 @@ table, th, td {
         </div>
 
         <div class="content">
+<h1>Add a developer</h1>
+<form action="adddev.php" method="post">
+  Name:
+  <input type="text" name="name">
+  Royalties per month:
+  <input type="text" name="royalty"><br>
+<input type ="submit" text = "Submit">
+<H1>Remove Developer by name</H1>
+</form>
+<form action="removedev.php" method="post">
+  Name:
+  <input type="text" name="name">
+<input type ="submit" text = "Submit">
+</form>
+
             <div class="container-fluid">
                 <div class="row">
 		<table>
@@ -201,7 +217,7 @@ table, th, td {
 						<div class="row">
 					<?php
 
-			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["royalties"] . "</TD><br>";
+			echo "<TD>" . $row["name"] . "</TD> <TD>$" . $row["royalties"] . "</TD><br>";
 					?>
 
 					</tr>

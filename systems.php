@@ -56,7 +56,8 @@ header( 'Location: login.php' ) ;
     clear: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    margin: auto;
 }
 </style>
 </style>
@@ -178,6 +179,22 @@ table, th, td {
         </div>
 
         <div class="content">
+<h1>Add a system</h1>
+<form action="addsystem.php" method="post">
+  Name:
+  <input type="text" name="name">
+  Release date:
+  <input type="text" name="release"><br>
+Developer:
+  <input type="text" name="dev">
+<input type ="submit" text = "Submit">
+<H1>Remove a system by ID</H1>
+</form>
+<form action="removesystem.php" method="post">
+  ID:
+  <input type="text" name="id">
+<input type ="submit" text = "Submit">
+</form>
             <div class="container-fluid">
                 <div class="row">
 		<table>

@@ -1,4 +1,7 @@
 <?php
+if (isset($_POST["name"]) && isset($_POST["release"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["timessold"]) &&
+isset($_POST["systemID"]) && isset($_POST["developer"]))
+{
 $n =  $_POST["name"];
 $n = filter_var($n,FILTER_SANITIZE_STRING);
 $r =  $_POST["release"];
@@ -13,6 +16,12 @@ $s =  $_POST["systemID"];
 
 $dev = $_POST["developer"];
 $dev = filter_var($dev,FILTER_SANITIZE_STRING);
+if ($n == "" || $r == "" || $d == "" || $dev == "")
+{
+
+}
+else
+{
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";
@@ -31,6 +40,8 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssss", $n,$r,$d,$p,$t,$s,$dev);
 $stmt->execute();
 $results = $stmt->get_result();
+}
+}
 header( 'Location: index.php' ) ;
 }
 ?>

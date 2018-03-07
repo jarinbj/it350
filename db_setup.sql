@@ -4,7 +4,7 @@ CREATE TABLE account (
   username varchar(255) PRIMARY KEY NOT NULL,
   password varchar(512) DEFAULT NULL,
   email varchar(512) DEFAULT NULL,
-  admin INT
+  amind INT
 );
 
 CREATE TABLE administrator (

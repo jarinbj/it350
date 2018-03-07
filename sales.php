@@ -56,7 +56,8 @@ header( 'Location: login.php' ) ;
     clear: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    margin: auto;
 }
 </style>
 </style>
@@ -179,7 +180,9 @@ table, th, td {
 
         <div class="content">
             <div class="container-fluid">
+<H1> Note: sales are view only </H1>
                 <div class="row">
+
 		<table>
                   <?php 
 			$sql = "SELECT * FROM sale ORDER BY saleID ASC";

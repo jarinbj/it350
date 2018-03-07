@@ -56,7 +56,8 @@ header( 'Location: login.php' ) ;
     clear: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    margin: auto;
 }
 </style>
 </style>
@@ -178,6 +179,12 @@ table, th, td {
         </div>
 
         <div class="content">
+<H1>Remove Customer by ID (note customers are added by users)</H1>
+<form action="removecustomer.php" method="post">
+  ID:
+  <input type="text" name="id">
+<input type ="submit" text = "Submit">
+</form>
             <div class="container-fluid">
                 <div class="row">
 		<table>
