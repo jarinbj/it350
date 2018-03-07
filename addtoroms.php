@@ -25,10 +25,12 @@ if (!$conn)
 }
 else
 {
-echo "connected";
-$sql = "INSERT INTO rom VALUES('$n','$r','$d','$p','$t','$s','$dev')";
-echo mysqli_query($conn,$sql);
-echo "connected";
+$sql = "INSERT INTO rom VALUES(?,?,?,?,?,?,?)";
+$stmt = $conn->stmt_init();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssssss", $n,$r,$d,$p,$t,$s,$dev);
+$stmt->execute();
+$results = $stmt->get_result();
 header( 'Location: index.php' ) ;
 }
 ?>

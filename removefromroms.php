@@ -14,8 +14,12 @@ if (!$conn)
 else
 {
 echo "connected";
-$sql = "DELETE FROM rom WHERE name = '$n'";
-echo mysqli_query($conn,$sql);
+$sql = "DELETE FROM rom WHERE name = ?";
+$stmt = $conn->stmt_init();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $n);
+$stmt->execute();
+$results = $stmt->get_result();
 echo "connected";
 header( 'Location: index.php' ) ;
 }

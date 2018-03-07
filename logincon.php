@@ -19,8 +19,14 @@ if (!$conn)
 else
 {
 //echo "connected";
-$sql = "SELECT * FROM account WHERE username = '" . $n . "'";
-$results = mysqli_query($conn,$sql);
+//$sql = "SELECT * FROM account WHERE username = '" . $n . "'";
+$sql = "SELECT * FROM account WHERE username = ?";
+$stmt = $conn->stmt_init();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $user);
+echo $user = $n;
+$stmt->execute();
+$results = $stmt->get_result();
 if (mysqli_num_rows($results) == 1) 
 {
 echo $row = mysqli_fetch_assoc($results);
