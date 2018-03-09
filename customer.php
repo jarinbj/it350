@@ -106,7 +106,7 @@ table, th, td {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                    <span class="small ml-1 d-md-down-none">John Smith</span>
+                    <span class="small ml-1 d-md-down-none"><?php echo $_SESSION['user_id'] ?></span>
                 </a>
 				<?php
 				if (1) { ?>
