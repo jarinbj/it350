@@ -13,8 +13,14 @@ if (!$conn)
 	echo "failed";
 	die("Connection Failed: " . mysqli_connect_error());
 }
-$sql = "SELECT * FROM account WHERE username = '" . $_SESSION['user_id'] . "'";
-$results = mysqli_query($conn,$sql);
+$sql = "SELECT * FROM account WHERE username = ?";
+$stmt = $conn->stmt_init();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $_SESSION['user_id']);
+echo $user = $n;
+$stmt->execute();
+$results = $stmt->get_result();
+
 if (mysqli_num_rows($results) > 0)
 {
  while ($row = mysqli_fetch_assoc($results))
