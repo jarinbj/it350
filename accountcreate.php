@@ -17,13 +17,8 @@ $servername = "localhost";
 $username = "root";
 $password = "itsatrap";
 $dbname = "coolroms";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$sql = "SELECT * FROM account WHERE username = ?";
-$stmt = $conn->stmt_init();
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $n);
-$stmt->execute();
-$results = $stmt->get_result();
+$sql = "SELECT * FROM account WHERE username = '" . $n . "'";
+$results = mysqli_query($conn,$sql);
 if (mysqli_num_rows($results) == 1) 
 {
   

@@ -1,8 +1,6 @@
 <!doctype html>
 <?php 
 session_start();
-if (isset($_SESSION['user_id']))
-{
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";
@@ -13,31 +11,7 @@ if (!$conn)
 	echo "failed";
 	die("Connection Failed: " . mysqli_connect_error());
 }
-$sql = "SELECT * FROM account WHERE username = '" . $_SESSION['user_id'] . "'";
-$results = mysqli_query($conn,$sql);
-if (mysqli_num_rows($results) > 0)
-{
- while ($row = mysqli_fetch_assoc($results))
-{
-if ($row["admin"] == 1)
-{
- 
-}
-else if ($row["admin"] == 0)
-{
-header( 'Location: buyroms.php' ) ;
-}
-else
-{
-header( 'Location: login.php' ) ;
-}
-}
-}
-}
-else
-{
-header( 'Location: login.php' ) ;
-}
+
 ?>
 <html lang="en">
 <style>
@@ -113,7 +87,7 @@ table, th, td {
                     <span class="small ml-1 d-md-down-none"><?php echo $_SESSION['user_id'] ?> </span>
                 </a>
 				<?php
-				if (1) { ?>
+				if (isset($_SESSION['user_id'])) { ?>
 					<div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header">Account</div>
 
@@ -138,6 +112,32 @@ table, th, td {
                     <a href="logout.php" class="dropdown-item">
                         <i class="fa fa-lock"></i> Logout
 						<?php } ?>
+			<?php
+			if (!isset($_SESSION['user_id'])) { ?>
+					<div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header">Account</div>
+
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-envelope"></i> Messages
+                    </a>
+
+                    <div class="dropdown-header">Settings</div>
+
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-bell"></i> Notifications
+                    </a>
+
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-wrench"></i> Settings
+                    </a>
+					
+                    <a href="logout.php" class="dropdown-item">
+                        <i class="fa fa-lock"></i> Login
+						<?php } ?>
                     </a>
                 </div>
             </li>
@@ -151,61 +151,37 @@ table, th, td {
                     <li class="nav-title">Navigation</li>
 
                     <li class="nav-item">
-                        <a href="index.php" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Roms
+                        <a href="buyroms.php" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> Buy Roms
                         </a>
                     </li>
 			<li class="nav-item">
-                        <a href="customer.php" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Customers
+                        <a href="viewroms.php" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> View Owned Roms
                         </a>
                     </li>
 			<li class="nav-item">
-                        <a href="developers.php" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Developers
+                        <a href="#" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> update personal info
                         </a>
-                    </li>
-			<li class="nav-item">
-                        <a href="systems.php" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Game Systems
-                        </a>
-                    </li>
-			<li class="nav-item">
-                        <a href="sales.php" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Sales
-                        </a>
-                    </li>
 
-
-                  
-                </ul>
+    
+              </ul>
             </nav>
         </div>
 
         <div class="content">
-<h1>Add a Rom</h1>
-<form action="addtoroms.php" method="post">
+<form>
+<h1>Buy a rom</h1>
   Name:
-  <input type="text" name="name">
-  Release date:
-  <input type="text" name="release"><br>
-Description:
-  <input type="text" name="description">
-price:
-  <input type="text" name="price"><br>
-Times Sold:
-  <input type="text" name="timessold">
-System ID:
-  <input type="text" name="systemID"><br>
-Developer:
-  <input type="text" name="developer"> <br>
-<input type ="submit" text = "Submit">
-<H1>Remove Rom by name</H1>
+<input type="text" name="name" id = "buy">
+<input type ="submit" text = "Submit" onclick = "buyit();">
 </form>
-<form action="removefromroms.php" method="post">
+<H1>search roms</H1>
+<form>
   Name:
-  <input type="text" name="name">
-<input type ="submit" text = "Submit">
+  <input type="text" name="name" id = "search">
+<input type ="submit" text = "Submit" onclick = "searchroms();">
 </form>
             <div class="container-fluid">
                 <div class="row">
@@ -216,7 +192,7 @@ Developer:
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>
-			<?php
+			<?php 
 						echo "<div><th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
 						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th></div>"   							;
 			?>
@@ -257,6 +233,20 @@ Developer:
         </div>
     </div>
 </div>
+<script type="text/javascript">
+   function buyit(){
+       var lol = document.getElementById('buy').value;
+	document.cookie = "bought=" + lol;
+<?php $buy = $_COOKIE['bought']; $success = shell_exec("python hello.py " . $buy . " " . $_SESSION['user_id']);?>
+alert("Processed");
+
+ }
+function searchroms(){
+       var lol = document.getElementById('search').value;
+       alert(lol);
+   }
+</script>
+
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
