@@ -1,8 +1,6 @@
 <!doctype html>
 <?php 
 session_start();
-if (isset($_SESSION['user_id']))
-{
 $servername = "localhost";
 $username = "root";
 $password = "itsatrap";
@@ -13,32 +11,7 @@ if (!$conn)
 	echo "failed";
 	die("Connection Failed: " . mysqli_connect_error());
 }
-$sql = "SELECT * FROM account WHERE username = ?";
-$stmt = $conn->stmt_init();
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $_SESSION['user_id']);
-echo $user = $n;
-$stmt->execute();
-$results = $stmt->get_result();
-if (mysqli_num_rows($results) > 0)
-{
- while ($row = mysqli_fetch_assoc($results))
-{
-if ($row["admin"] == 1)
-{
- 
-}
-else
-{
-header( 'Location: login.php' ) ;
-}
-}
-}
-}
-else
-{
-header( 'Location: login.php' ) ;
-}
+
 ?>
 <html lang="en">
 <style>
@@ -184,66 +157,16 @@ table, th, td {
         </div>
 
         <div class="content">
-<h1>Add a Rom</h1>
-<form action="addtoroms.php" method="post">
-  Name:
-  <input type="text" name="name">
-  Release date:
-  <input type="text" name="release"><br>
-Description:
-  <input type="text" name="description">
-price:
-  <input type="text" name="price"><br>
-Times Sold:
-  <input type="text" name="timessold">
-System ID:
-  <input type="text" name="systemID"><br>
-Developer:
-  <input type="text" name="developer"> <br>
-<input type ="submit" text = "Submit">
-<H1>Remove Rom by name</H1>
-</form>
-<form action="removefromroms.php" method="post">
-  Name:
-  <input type="text" name="name">
-<input type ="submit" text = "Submit">
-</form>
             <div class="container-fluid">
                 <div class="row">
 	
-		<table>
-                  <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
-			$results = mysqli_query($conn,$sql);
-			?>
-				<tr>
-			<?php
-						echo "<div><th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th></div>"   							;
-			?>
+                <?php $view = shell_exec("python getroms.py " . $_SESSION['user_id']); $view = var_dump(json_decode($view)); echo $view;?>
+<script
+
+			  
 			</tr>
 			</div>
-			<?php
-			if (mysqli_num_rows($results) > 0)
-			{
-				while ($row = mysqli_fetch_assoc($results))
-					{
-						?>
-						<tr>
-						<div class="row">
-					<?php
 
-			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD>";
-					?>
-
-					</tr>
-					</div>
-					<?php
-					}
-			}
-		?>
-                   </table>
                  
 
                    

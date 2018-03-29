@@ -171,10 +171,19 @@ table, th, td {
         </div>
 
         <div class="content">
+<?php 
+			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$results = mysqli_query($conn,$sql);
+			?>
 <form>
-<h1>Buy a rom</h1>
+<h1>Buy a rom (roms already owned will not be processed)</h1>
   Name:
-<input type="text" name="name" id = "buy">
+<select value =  name="rom" id = "buy">
+<?php
+	while ($row = mysqli_fetch_assoc($results))
+	{
+		echo "<option value=". "'". $row['name'] . "'" . ">". $row['name']. "</option>";
+    	}?>
 <input type ="submit" text = "Submit" onclick = "buyit();">
 </form>
 <H1>search roms</H1>
@@ -187,10 +196,7 @@ table, th, td {
                 <div class="row">
 	
 		<table>
-                  <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
-			$results = mysqli_query($conn,$sql);
-			?>
+                  
 				<tr>
 			<?php 
 						echo "<div><th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
@@ -198,6 +204,10 @@ table, th, td {
 			?>
 			</tr>
 			</div>
+<?php 
+			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$results = mysqli_query($conn,$sql);
+			?>
 			<?php
 			if (mysqli_num_rows($results) > 0)
 			{
