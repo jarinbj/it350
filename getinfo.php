@@ -188,10 +188,16 @@ ul {
 }
 </style>
                 <div class="row">
-			<table>
+		<form>
+<h1>add address</h1>
+  Address:
+<input type = 'text' id = "buy">
+<input type ="submit" text = "Submit" onclick = "buyit();">
+</form>
+<table>
 		  <?php
 			//$success = "default";
-				$success = shell_exec("python getinfo.py" . $_SESSION['user_id']);
+				$success = shell_exec("python getinfo.py " . $_SESSION['user_id']);
 				echo $success;
 				
 
@@ -212,7 +218,17 @@ ul {
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+   function buyit(){
+       var lol = document.getElementById('buy').value;
+	if (lol != "")
+	{
+	document.cookie = "address=" + lol;
+	<?php $buy = $_COOKIE['address']; $success = shell_exec("python addinfo.py " . $buy . " " . $_SESSION['user_id']);?>
+	alert("Processed");
+	}
+ }
+</script>
 
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
