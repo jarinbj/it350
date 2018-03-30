@@ -161,7 +161,7 @@ table, th, td {
                         </a>
                     </li>
 			<li class="nav-item">
-                        <a href="getinfo.php" class="nav-link active">
+                        <a href="#" class="nav-link active">
                             <i class="icon icon-speedometer"></i> update personal info
                         </a>
 		     </li>
@@ -181,25 +181,28 @@ table, th, td {
 			$sql = "SELECT * FROM rom ORDER BY name ASC";
 			$results = mysqli_query($conn,$sql);
 			?>
+<form>
+<h1>Buy a rom (roms already owned will not be processed)</h1>
+  Name:
+<select value =  name="rom" id = "buy">
+<?php
+	while ($row = mysqli_fetch_assoc($results))
+	{
+		echo "<option value=". "'". $row['name'] . "'" . ">". $row['name']. "</option>";
+    	}?>
+<input type ="submit" text = "Submit" onclick = "buyit();">
+</form>
+<H1>search roms</H1>
+<form>
+  Name:
+  <input type="text" name="name" id = "search">
+<input type ="submit" text = "Submit" onclick = "searchroms();">
+</form>
             <div class="container-fluid">
-<style>
-ul {
-  list-style-type: none;
-}
-</style>
                 <div class="row">
-			<table>
-		  <?php
-			//$success = "default";
-				$success = shell_exec("python getroms.py " . $_SESSION['user_id']);
-				echo $success;
-				
+	
+               
 
-
-
-		?>
-                 
-			</table>
                    
                 </div>
 		</div>
@@ -212,7 +215,6 @@ ul {
         </div>
     </div>
 </div>
-
 
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>

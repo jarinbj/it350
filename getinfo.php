@@ -191,7 +191,7 @@ ul {
 			<table>
 		  <?php
 			//$success = "default";
-				$success = shell_exec("python getroms.py " . $_SESSION['user_id']);
+				$success = shell_exec("python getinfo.py" . $_SESSION['user_id']);
 				echo $success;
 				
 

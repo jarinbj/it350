@@ -175,6 +175,11 @@ table, th, td {
                             <i class="icon icon-speedometer"></i> Sales
                         </a>
                     </li>
+			<li class="nav-item">
+                        <a href="buyroms.php" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> customer view
+                        </a>
+                    </li>
 
 
                   
@@ -207,12 +212,12 @@ Developer:
   <input type="text" name="name">
 <input type ="submit" text = "Submit">
 </form>
-            <div class="container-fluid">
+            <div class="container-fluidweba
                 <div class="row">
 	
 		<table>
                   <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$sql = "CALL shorten();";
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>

@@ -161,10 +161,16 @@ table, th, td {
                         </a>
                     </li>
 			<li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="getinfo.php" class="nav-link active">
                             <i class="icon icon-speedometer"></i> update personal info
                         </a>
-
+		     </li>
+			 </li>
+			<li class="nav-item">
+                        <a href="index.php" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> admin view
+                        </a>
+		     </li>
     
               </ul>
             </nav>
@@ -200,12 +206,12 @@ table, th, td {
 				<tr>
 			<?php 
 						echo "<div><th>" . "name" .  "</th>" . "<th> " . "releasedate</th>" . "<th> " . "description</th>" . "<th> " . 
-						"price</th>" . "<th> " . "timessold</th>" . "<th> " . "systemID</th>" . "<th>" . "developer</th></div>"   							;
+						"price</th>";
 			?>
 			</tr>
 			</div>
 <?php 
-			$sql = "SELECT * FROM rom ORDER BY name ASC";
+			$sql = "select * from short ORDER BY name ASC";
 			$results = mysqli_query($conn,$sql);
 			?>
 			<?php
@@ -219,7 +225,7 @@ table, th, td {
 					<?php
 
 			echo "<TD>" . $row["name"] . "</TD> <TD>" . $row["releasedate"] . "</TD> <TD>" . $row["description"] . "</TD> <TD>$" . 
-	$row["price"] . "</TD> <TD>" . $row["timessold"] . "</TD> <TD>" . $row["systemID"] . "</TD><TD>" . $row["developer"] .  "</TD>";
+	$row["price"] . "</TD>";
 					?>
 
 					</tr>
