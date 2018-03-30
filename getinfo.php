@@ -189,11 +189,13 @@ ul {
 </style>
                 <div class="row">
 		<form>
-<h1>add address</h1>
-  Address:
+<h1>Add/Change paypal account</h1>
+  Email Address:
 <input type = 'text' id = "buy">
 <input type ="submit" text = "Submit" onclick = "buyit();">
 </form>
+<p></p>
+<br>
 <table>
 		  <?php
 			//$success = "default";
@@ -219,17 +221,14 @@ ul {
     </div>
 </div>
 <script type="text/javascript">
-   function buyit(){
+  function buyit(){
        var lol = document.getElementById('buy').value;
-	if (lol != "")
-	{
 	document.cookie = "address=" + lol;
-	<?php $buy = $_COOKIE['address']; $success = shell_exec("python addinfo.py " . $buy . " " . $_SESSION['user_id']);?>
-	alert("Processed");
-	}
+<?php $buy = $_COOKIE['address']; $success = shell_exec("python addinfo.py " . $buy . " " . $_SESSION['user_id']);?>
+setTimeout(location.reload.bind(location), 10);
+
  }
 </script>
-
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>

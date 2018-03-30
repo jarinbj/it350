@@ -192,12 +192,6 @@ table, th, td {
     	}?>
 <input type ="submit" text = "Submit" onclick = "buyit();">
 </form>
-<H1>search roms</H1>
-<form>
-  Name:
-  <input type="text" name="name" id = "search">
-<input type ="submit" text = "Submit" onclick = "searchroms();">
-</form>
             <div class="container-fluid">
                 <div class="row">
 	

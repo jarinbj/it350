@@ -4,7 +4,6 @@ import json
 def getroms():
 	user = sys.argv[1];
 	from pymongo import MongoClient
-
 	client = MongoClient('localhost:27017',
 	username='root',
 	password='itsatrap',
@@ -12,7 +11,7 @@ def getroms():
 	authMechanism='SCRAM-SHA-1')
 	d = ""
 	db = client.userroms
-	dubcheck = (db[user].find({},{"_id" : 0}))
+	dubcheck = (db[user].find({},{"_id" : 0, "romname" : 1}))
 	for duplicate in dubcheck:
 		s = str(duplicate["romname"])
 		s = s[2:]
