@@ -198,34 +198,13 @@ table, th, td {
 	
 		<table>
                   <?php 
-			$sql = "SHOW GLOBAL STATUS LIKE 'Uptime'";
+			$sql = "SHOW GLOBAL STATUS";
 			$results = mysqli_query($conn,$sql);
 			?>
 				<tr>
-			<?php
-						echo "<div><th>" . "SQL database uptime (site will not work if down)" .  "</th>" . "<th> " . "MONGODB uptime (will indicate if down)</th><th>ElasticSearch Status</th>" . "</div>";
-			?>
 			</tr>
 			</div>
 			<?php
-			$esstatus = "Down";
-			$checkes = shell_exec("python checkes.py");
-			if ($checkes == 0)
-			{
-			   $esstatus = "Up";
-			}
-			try {
-			$mongodbtime = shell_exec("mongo --quiet --eval \"db.serverStatus().uptime\" --username=root --password=itsatrap --authenticationDatabase=admin");
-			$mongodbtime = secondsToTime($mongodbtime);
-			}
-			catch (exception $e)
-			{
-			  $mongodbtime = "database is down";
-			}
-			catch ( exception $b )
-			{
-  			   
-			}
 			if (mysqli_num_rows($results) > 0)
 			{
 				while ($row = mysqli_fetch_assoc($results))
@@ -234,7 +213,7 @@ table, th, td {
 						<tr>
 						<div class="row">
 					<?php
-			echo "<TD>" . secondsToTime($row["Value"]) . "</TD><TD>" . $mongodbtime . "</TD><TD>" . $esstatus . "</TD>" ;
+			echo '<pre>'; print_r($row); echo '</pre>';
 					?>
 
 					</tr>
@@ -246,10 +225,6 @@ table, th, td {
                    </table>
                  
 		<?php  ?>
-                  Databases are backed up daily at midnight download current backups here: <a href="mysqlbackup.sql"> sql database </a> <a href="mongodbbackup"> mongo database </a>		<br> elastic search is not backed up		
-<br>
-		  Also mysql status is logged in elastic search at 1 AM every day
-		<br> <a href = "sqlstats.php"> sql statistics dump
                 </div>
 		</div>
                 <div class="row ">

@@ -188,6 +188,7 @@ table, th, td {
         </div>
 
         <div class="content">
+<H1><a href="DBA.php"> DBA site here! </H1>
 <h1>Add a Rom</h1>
 <form action="addtoroms.php" method="post">
   Name:
@@ -214,7 +215,7 @@ Developer:
 </form>
             <div class="container-fluidweba
                 <div class="row">
-	
+		
 		<table>
                   <?php 
 			$sql = "CALL shorten();";
